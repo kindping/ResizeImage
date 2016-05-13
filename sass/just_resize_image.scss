@@ -1,0 +1,128 @@
+@import "compass/css3";
+
+@include keyframes(LogoHover) {
+	0% { line-height:inherit; }
+	100% { line-height:40px; }
+}
+
+@include keyframes(LogoBlur) {
+	0% { line-height:40px; }
+	100% { line-height:inherit; }
+}
+
+@include keyframes(FnShow) {
+	0% { bottom:-60px; }
+	100% { bottom:0; }
+}
+
+#header {
+	height:80px;
+	line-height:80px;
+	background:#0080FF;
+	color:#dedede;
+	text-align:center;
+
+	h1 {
+		height:inherit;
+		line-height:inherit;
+		margin-top:0;
+		@include animation(LogoBlur 0.7s linear);
+	}
+
+	#author {
+		line-height:20px;
+		display:none;
+	}
+
+	&:hover, &.active {
+		color:#EDFAFA;
+
+		h1 {
+			@include animation(LogoHover 0.2s linear);
+			line-height:40px;
+		}
+
+		#author {
+			display:block;
+		}
+	}
+}
+
+.image-area {
+	position:relative;
+	border:1px solid #000;
+	cursor:pointer;
+	height:auto;
+	overflow:hidden;
+
+	.image {
+		position:relative;
+		left:20%;
+		width:60%;
+		height:auto;
+		border:0;
+		z-index:1;
+		@include filter(opacity(0.1));
+	}
+
+	.description {
+		position:absolute;
+		width:100%;
+		top:50%;
+		left:0;
+		z-index:2;
+		color:#3A8CCF;
+		font-size:2em;
+		text-align:center;
+	}
+
+	.fn {
+		position:absolute;
+		bottom:-60px;
+		height:60px;
+		line-height:60px;
+		background:rgba(0, 0, 0, 0.8);
+		width:100%;
+		color:#fff;
+		text-align:center;
+		font-size:2em;
+		z-index:4;
+	}
+
+	.image-file {
+		position:absolute;
+		width:100%;
+		height:100%;
+		z-index:3;
+		@include opacity(0);
+		cursor:inherit;
+	}
+
+	&:hover {
+		border:3px solid #FA4741;
+		
+		.description {
+			color:#FA4741;
+		}
+	}
+
+	&.active {
+		.image {
+			@include filter(opacity(1));
+		}
+
+		.description {
+			display:none;
+		}
+
+		.fn {
+			@include animation(FnShow 0.2s linear);
+			bottom:0;
+		}
+	}
+}
+
+#resized-image {
+	width:160px;
+	height:160px;
+}

@@ -1,0 +1,11 @@
+{
+	"autoload" : {
+		"classmap" : [
+			"app/"
+		],
+		"files" : [
+			"config/timezone.php",
+			"config/path.php"
+		]
+	}
+}
